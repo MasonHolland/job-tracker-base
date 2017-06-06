@@ -35,9 +35,9 @@ describe "User sees one company" do
     company = Company.create!(name: "Dutch Boys Toys")
     location_1 = Location.create(city: "Denver", branch: "CBD", company_id: company.id)
     location_2 = Location.create(city: "Denver", branch: "The Highlands", company_id: company.id)
-    location_3 = Location.create(city: "Perth", branch: "CBD" company_id: company.id)
-    location_4 = Location.create(city: "Perth", branch: "Leederville" company_id: company.id)
-    location_5 = Location.create(city: "Perth", branch: "Cottesloe" company_id: company.id)
+    location_3 = Location.create(city: "Perth", branch: "CBD", company_id: company.id)
+    location_4 = Location.create(city: "Perth", branch: "Leederville", company_id: company.id)
+    location_5 = Location.create(city: "Perth", branch: "Cottesloe", company_id: company.id)
 
 
     visit company_path(company)
