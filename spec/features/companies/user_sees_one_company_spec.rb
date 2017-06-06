@@ -21,7 +21,7 @@ describe "User sees one company" do
     location_2 = Location.create(city: "Perth", company_id: company.id)
 
     visit company_path(company)
-    save_and_open_page
+
     expect(page).to have_content("Locations:")
     expect(page).to have_content("Denver")
     expect(page).to have_content("Perth")
@@ -41,6 +41,7 @@ describe "User sees one company" do
 
 
     visit company_path(company)
+    save_and_open_page
 
     expect(page).to have_content("Locations:")
     expect(page).to have_content("Denver - 2")
