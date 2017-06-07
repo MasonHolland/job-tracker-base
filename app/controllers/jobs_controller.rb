@@ -2,8 +2,13 @@ class JobsController < ApplicationController
   def index
     @company = Company.find(params[:company_id])
     @jobs = @company.jobs
-    @locations = CompanyLocation.where(company_id: params[:company_id])
-    binding.pry
+    company_locations = CompanyLocation.where(company_id: params[:company_id])
+    company_locations.each do |cl|
+    locations = company_locations.map do |cl|
+      Location.find(cl.location_id).area
+    end
+    locations = Location.where(location_id: company_locations.location_id)
+
   end
 
   def new
