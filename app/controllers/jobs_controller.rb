@@ -2,6 +2,7 @@ class JobsController < ApplicationController
   def index
     @company = Company.find(params[:company_id])
     @jobs = @company.jobs
+    @locations = @company.city_count
   end
 
   def new
@@ -40,5 +41,13 @@ class JobsController < ApplicationController
 
   def job_params
     params.require(:job).permit(:title, :description, :level_of_interest, :city)
+  end
+
+  def city_count
+    cities_count = {}
+    self.cities_find.uniq.each do |city|
+      cities_count["#{city}"] = company.locations.where(city: city).count
+    end
+    cities_count
   end
 end

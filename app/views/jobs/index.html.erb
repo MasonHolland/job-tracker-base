@@ -1,16 +1,6 @@
 Locations:
 <ul>
-  <% cities = [] %>
-  <% @company.locations.each do |location| %>
-  <% cities << location.city %>
-  <% end %>
-  <!-- <% cities.uniq %> -->
-  <% cities_count = {} %>
-  <% cities.uniq.each do |city| %>
-  <% cities_count["#{city}"] = @company.locations.where(city: city).count %>
-  <% end %>
-  <% cities_count %>
-  <% cities_count.each do |k, v| %>
+  <% @locations.each do |k, v| %>
     <li>
       <%= "#{k} - #{v}" %>
     </li>
