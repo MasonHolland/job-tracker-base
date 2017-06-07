@@ -1,10 +1,20 @@
 Locations:
 <ul>
-  <%= @locations.each do |location| %>
+  <% cities = [] %>
+  <% @company.locations.each do |location| %>
+  <% cities << location.city %>
+  <% end %>
+  <!-- <% cities.uniq %> -->
+  <% cities_count = {} %>
+  <% cities.uniq.each do |city| %>
+  <% cities_count["#{city}"] = @company.locations.where(city: city).count %>
+  <% end %>
+  <% cities_count %>
+  <% cities_count.each do |k, v| %>
     <li>
-      <%= location.city %>
+      <%= "#{k} - #{v}" %>
     </li>
-  <%end %>
+  <% end %>
 </ul>
 
 All Jobs for <strong><%= @company.name %></strong>
