@@ -2,6 +2,8 @@ class JobsController < ApplicationController
   def index
     @company = Company.find(params[:company_id])
     @jobs = @company.jobs
+    @locations = CompanyLocation.where(company_id: params[:company_id])
+    binding.pry
   end
 
   def new
