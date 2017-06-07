@@ -4,7 +4,7 @@ describe Location do
   describe "validations" do
     context "invalid attributes" do
       it "is invalid without an area" do
-        location = Location.create(area: nil)
+        location = Location.new(area: nil)
 
         expect(location).to be_invalid
       end
@@ -12,7 +12,7 @@ describe Location do
 
     context "valid attributes" do
       it "is valid with an area" do
-        location = Location.create(area: "CBD")
+        location = Location.new(area: "CBD")
 
         expect(location).to be_valid
       end
@@ -21,7 +21,7 @@ describe Location do
 
   describe "relationships" do
     it "has many companies" do
-      location = Location.create(area: "CBD")
+      location = Location.new(area: "CBD")
 
       expect(location).to respond_to(:companies)
     end

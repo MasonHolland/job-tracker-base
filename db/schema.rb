@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214181533) do
+ActiveRecord::Schema.define(version: 20170607170925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +21,13 @@ ActiveRecord::Schema.define(version: 20161214181533) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "company_locations", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "location_id"
+    t.index ["company_id"], name: "index_company_locations_on_company_id", using: :btree
+    t.index ["location_id"], name: "index_company_locations_on_location_id", using: :btree
+  end
+
   create_table "jobs", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
@@ -30,9 +36,14 @@ ActiveRecord::Schema.define(version: 20161214181533) do
     t.datetime "updated_at",        null: false
     t.integer  "company_id"
     t.string   "city"
+    t.index ["company_id"], name: "index_jobs_on_company_id", using: :btree
   end
 
-  add_index "jobs", ["company_id"], name: "index_jobs_on_company_id", using: :btree
+  create_table "locations", force: :cascade do |t|
+    t.string "area"
+  end
 
+  add_foreign_key "company_locations", "companies"
+  add_foreign_key "company_locations", "locations"
   add_foreign_key "jobs", "companies"
 end

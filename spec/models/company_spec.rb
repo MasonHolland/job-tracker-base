@@ -31,8 +31,8 @@ describe Company do
 
     it "has many locations" do
       company = Company.new(name: "Dropbox")
-      location = Location.create(area: "CBD")
-      CompanyLocation.create(company_id: company.id, location_id: location.id)
+      location = Location.new(area: "CBD")
+      CompanyLocation.new(company_id: company.id, location_id: location.id)
 
       expect(company).to respond_to(:locations)
     end
